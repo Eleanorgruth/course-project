@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
- collapsed = true
+  //@output allows this to be listened to outside of component(parent component)
+  @Output() featureSelected = new EventEmitter<string>()
+  collapsed = true
+
+  onSelect(feature: string) {
+    this.featureSelected.emit(feature)
+  }
 }
