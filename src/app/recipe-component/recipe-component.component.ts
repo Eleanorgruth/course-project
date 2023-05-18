@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'recipe-component',
@@ -11,7 +12,8 @@ import { RecipeService } from './recipe.service';
 export class RecipeComponent {
   selectedRecipe: Recipe;
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(private recipeService: RecipeService,
+      private router: Router) {}
 
   ngOnInit() {
     this.recipeService.recipeSelected
@@ -20,5 +22,9 @@ export class RecipeComponent {
           this.selectedRecipe = recipe
         }
       )
+  }
+
+  navigateToShoppingList(){
+    this.router.navigate(["/list"])
   }
 }
